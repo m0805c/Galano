@@ -7,11 +7,14 @@ def landing_page  (request):
 def quienes_somos (request):
     return render (request, 'core/quienes_somos.html')
 
-def servicios (request):
-    return render (request, 'core/servicios.html')
-
 def iniciosesion (request):
     return render (request, 'core/iniciosesion.html')
 
 def tecnologias (request):
     return render (request, 'core/tecnologias.html')
+
+def constructora (request):
+    return render (request, 'core/constructora.html')
+
+def seguridad (request):
+    return render (request, 'core/seguridad.html')

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+!<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios</title>
+    <title>Landing Page</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
 </head>
@@ -11,21 +11,21 @@
 
     <!-- Barra naranja superior -->
     <div class="header-top">
-        Grupo Galano
+       Grupo Galano
     </div>
 
     <!-- Barra gris de navegación -->
     <div class="navbar">
         <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
-        <a href="{% url 'servicios' %}">Servicios</a>
         <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
+        <a href="{% url 'tecnologias' %}">Tecnolgías Emergentes</a>
+        <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
+        <a href="{% url 'constructora' %}">Constructora</a>
     </div>
 
-    <!-- Contenido principal -->
-    <div class="main-content">
-        <h2>Esta es la vista dedicada para describir los servicios de Galano</h2>
-        <p>En Galano ofrecemos una variedad de servicios adaptados a tus necesidades. Explora nuestras opciones para encontrar lo que mejor se ajuste a ti.</p>
-    </div>
-
+    <h1>Galano Group</h1>
+    <h2> Informacion seguridad y tecnologias</h2>
+    <!-- Aquí van otros contenidos -->
+    
 </body>
 </html>
