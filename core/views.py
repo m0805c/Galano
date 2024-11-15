@@ -13,3 +13,5 @@ def servicios (request):
 def iniciosesion (request):
     return render (request, 'core/iniciosesion.html')
 
+def tecnologias (request):
+    return render (request, 'core/tecnologias.html')

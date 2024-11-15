@@ -12,4 +12,5 @@ urlpatterns = [
     path ('quienes_somos/' , views.quienes_somos, name ='quienes_somos'),
     path ('servicios/', views.servicios, name='servicios'),
     path ('iniciosesion/' , views.iniciosesion, name='iniciosesion'),
+    path ('tecnologias/' , views.tecnologias, name='tecnologias'),
 ]
