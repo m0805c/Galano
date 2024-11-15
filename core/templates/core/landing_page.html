@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
 </head>
 <body>
+
+    <!-- Barra naranja superior -->
+    <div class="header-top">
+       Grupo Galano
+    </div>
+
+    <!-- Barra gris de navegación -->
+    <div class="navbar">
+        <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
+        <a href="{% url 'servicios' %}">Servicios</a>
+        <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
+    </div>
+
     <h1>Galano Group</h1>
     <h2> Conoce nuestros servicios</h2>
-    <a href="{%url 'quienes_somos' %}">¿Quiénes Somos?</a>
-    <a href="{% url 'servicios'%}">Servicios</a>
-    <a href="{% url 'iniciosesion'%}">Contacto</a>
+    <!-- Aquí van otros contenidos -->
+    
 </body>
 </html>

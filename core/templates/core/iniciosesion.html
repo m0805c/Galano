@@ -4,8 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de sesión</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
 </head>
 <body>
-        <h2>Esta es la vista para el inicio de sesión a los clientes</h2>
+
+    <!-- Barra naranja superior -->
+    <div class="header-top">
+        Grupo Galano
+    </div>
+
+    <!-- Barra gris de navegación -->
+    <div class="navbar">
+        <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
+        <a href="{% url 'servicios' %}">Servicios</a>
+        <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <h2>Ingresa tu usuario y contraseña para poder acceder:</h2>
+      
+    </div>
+
 </body>
 </html>
