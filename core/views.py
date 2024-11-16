@@ -3,7 +3,7 @@ from django.http import HttpResponse # type: ignore
 
 def landing_page  (request):
     images = CarouselImage.objects.all() # type: ignore
-    return render (request, 'core/landing_page.html' {'images': images})
+    return render (request, 'core/landing_page.html', {'images': images} )
 
 def quienes_somos (request):
     return render (request, 'core/quienes_somos.html')
