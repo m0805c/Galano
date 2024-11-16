@@ -19,7 +19,6 @@ Including another URLconf
 #este es el archivo global en el que se importan todas las urls del proyecto.
 
 
-from django.conf import settings # type: ignore
 from django.contrib import admin # type: ignore
 from django.urls import path, include  # type: ignore
 from django.conf.urls.static import static # type: ignore
@@ -31,6 +30,3 @@ urlpatterns = [
     path('' , include('core.urls')) # type: ignore
 ]+ static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 
-urlpatterns = [
-    # Otras rutas
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
