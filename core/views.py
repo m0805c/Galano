@@ -2,7 +2,8 @@ from django.shortcuts import render # type: ignore
 from django.http import HttpResponse # type: ignore
 
 def landing_page  (request):
-    return render (request, 'core/landing_page.html')
+    images = CarouselImage.objects.all() # type: ignore
+    return render (request, 'core/landing_page.html' {'images': images})
 
 def quienes_somos (request):
     return render (request, 'core/quienes_somos.html')
