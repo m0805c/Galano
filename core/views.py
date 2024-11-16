@@ -4,6 +4,10 @@ from django.http import HttpResponse # type: ignore
 def landing_page  (request):
     return render (request, 'core/landing_page.html' )
 
+
+def landing_page (request):
+    return render (request, 'core/landing_page.html')
+
 def quienes_somos (request):
     return render (request, 'core/quienes_somos.html')
 

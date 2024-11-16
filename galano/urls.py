@@ -28,5 +28,6 @@ from galano import settings # type: ignore
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , include('core.urls')) # type: ignore
+
 ]+ static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 
