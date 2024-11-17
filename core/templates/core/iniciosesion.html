@@ -3,29 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de sesión</title>
+    <title>Iniciar Sesión</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
 </head>
 <body>
 
-    <!-- Barra naranja superior -->
     <div class="header-top">
         Grupo Galano
     </div>
 
-    <!-- Barra gris de navegación -->
     <div class="navbar">
         <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
-        <a href="{% url 'tecnologias' %}">Tecnolgías Emergentes</a>
+        <a href="{% url 'tecnologias' %}">Tecnologías Emergentes</a>
         <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
         <a href="{% url 'constructora' %}">Constructora</a>
-        <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
+        <a href="{% url 'registro' %}">Registro</a>
     </div>
-    <!-- Contenido principal -->
+
     <div class="main-content">
-        <h2>Ingresa tu usuario y contraseña para poder acceder:</h2>
-      
+        <h2>Inicia sesión en tu cuenta</h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <!-- Campo de Usuario -->
+            <div>
+                <label for="username">Nombre de Usuario:</label>
+                <input type="text" name="username" id="username" required placeholder="Ingresa tu nombre de usuario">
+            </div>
+
+            <!-- Campo de Contraseña -->
+            <div>
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" id="password" required placeholder="Ingresa tu contraseña">
+            </div>
+
+            <button type="submit">Iniciar sesión</button>
+        </form>
+
+        <!-- Enlace para registro -->
+        <div class="registro-link">
+            <p>¿No tienes cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a></p>
+        </div>
+        
+        <!-- Mostrar mensajes de error -->
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
     </div>
 
 </body>

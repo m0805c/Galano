@@ -10,75 +10,21 @@
     <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
 </head>
 <body>
-    {% load static %}
 
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{% static 'carousel_images/image1.jpg' %}" class="d-block w-100" alt="Imagen 1">
-    </div>
-    <div class="carousel-item">
-      <img src="{% static 'carousel_images/image2.jpg' %}" class="d-block w-100" alt="Imagen 2">
-    </div>
-    <div class="carousel-item">
-      <img src="{% static 'carousel_images/image3.jpg' %}" class="d-block w-100" alt="Imagen 3">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+  <div class="header-top">
+    Grupo Galano
+ </div>
+
+
+  <div class="navbar">
+    <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
+    <a href="{% url 'tecnologias' %}">Tecnolgías Emergentes</a>
+    <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
+    <a href="{% url 'constructora' %}">Constructora</a>
+    <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
 </div>
 
-
-    <!-- Barra naranja superior -->
-    <div class="header-top">
-       Grupo Galano
-    </div>
-
-    <!-- Barra gris de navegación -->
-    <div class="navbar">
-        <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
-        <a href="{% url 'tecnologias' %}">Tecnolgías Emergentes</a>
-        <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
-        <a href="{% url 'constructora' %}">Constructora</a>
-        <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
-    </div>
-     
-    <!-- Carrusel -->
-    <div class="container mt-5">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                {% for image in images %}
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
-                {% endfor %}
-            </div>
-            <div class="carousel-inner">
-                {% for image in images %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                    <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ image.title }}">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>{{ image.title }}</h5>
-                        <p>{{ image.description }}</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-    <h1>Galano Group</h1>
+     <h1>Galano Group</h1>
     <h2> Conoce nuestros servicios</h2>
     <!-- Aquí van otros contenidos -->
     

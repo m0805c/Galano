@@ -90,6 +90,14 @@ DATABASES = {
 }
 
 
+#IMPORTANTE 
+ # SE ACTUALIZA EL MODELO DE AUTENTICACIÓN POR AUTH USER MODEL 
+
+AUTH_USER_MODEL = 'core.User'
+
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -135,3 +143,5 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+LOGIN_REDIRECT_URL = 'dashboard'

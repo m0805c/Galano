@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
+</head>
+<body>
+
+ 
+    <div class="header-top">
+        Grupo Galano
+    </div>
+
+
+    <div class="navbar">
+        <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
+        <a href="{% url 'tecnologias' %}">Tecnologías Emergentes</a>
+        <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
+        <a href="{% url 'constructora' %}">Constructora</a>
+        <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
+    </div>
+
+  
+    <div class="main-content">
+        <h2>Regístrate Aquí</h2>
+        
+<!-- ruta para el formulario en forms.py-->
+<h2>Registro</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Muestra el formulario -->
+    <button type="submit">Registrar</button>
+</form>
+
+</body>
+</html>
