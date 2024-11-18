@@ -133,31 +133,29 @@ class Cliente(models.Model):
 
 
 class Proyecto(models.Model):
-        nombre = models.CharField(max_length=255)
-        descripcion = models.CharField(max_length=1000)
-        cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='proyectos')
-        fecha_inicio = models.DateField()
-        fecha_fin = models.DateField(null=True, blank=True)
-        estado = models.CharField(max_length=50, choices=[
-             ('activo' , 'Activo'),
-             ('finalizado' , 'Finalizado'),
-             ('pendiente' , 'Pendiente'),
-        ], default='activo')
+    nombre = models.CharField(max_length=255)
+    descripcion = models.CharField(max_length=1000)
+    cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name='proyectos')
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField(null=True, blank=True)
+    estado = models.CharField(max_length=50, choices=[
+        ('activo', 'Activo'),
+        ('finalizado', 'Finalizado'),
+        ('pendiente', 'Pendiente'),
+    ], default='activo')
 
-        #relacion 
+    usuario = models.ForeignKey('User', on_delete=models.CASCADE, related_name='proyectos')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        
+        ordering = ['-created_at']  # IMPORTANTE ordena la fecha de creación de manera descendente
+        verbose_name = 'Proyecto'
+        verbose_name_plural = 'Proyectos'
 
-        usuario = models.ForeignKey ('User' , on_delete=models.CASCADE, related_name='proyectos')
-        created_at = models.DateTimeField(auto_now_add=True)
-        updated_at = models.DateTimeField(auto_now=True)
-
-        def __str__(self):
-            return Self.nombre
-
-        class Meta:
-            verbose_name = 'Proyecto'
-            verbose_name_plural = 'Proyectos'
-               
+    def __str__(self):
+        return self.nombre
 
 
 
