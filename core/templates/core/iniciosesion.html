@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -11,10 +11,12 @@
 
 <body>
 
+    <!-- Header -->
     <div class="header-top">
         Grupo Galano
     </div>
 
+    <!-- Navbar -->
     <div class="navbar">
         <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
         <a href="{% url 'tecnologias' %}">Tecnologías Emergentes</a>
@@ -23,20 +25,23 @@
         <a href="{% url 'registro' %}">Registro</a>
     </div>
 
+    <!-- Main Content: Formulario de inicio de sesión -->
     <div class="main-content">
         <h2>Inicia sesión en tu cuenta</h2>
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Iniciar Sesiooon</button>
-        </form>
-
-
-
-
-        {% block content%}{% endblock %}
-
+        <!-- Formulario de inicio de sesión -->
+        <div class="login-form">
+            <form method="POST">
+                {% csrf_token %}
+                
+                <!-- Aquí se renderizan los campos del formulario de manera más estilizada -->
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                
+                <button type="submit" class="btn-submit">Iniciar Sesión</button>
+            </form>
+        </div>
 
         <!-- Enlace para registro -->
         <div class="registro-link">
@@ -45,13 +50,15 @@
 
         <!-- Mostrar mensajes de error -->
         {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
+        <div class="error-messages">
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endif %}
-
+        
     </div>
 
 </body>
