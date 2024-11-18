@@ -16,5 +16,5 @@ urlpatterns = [
     path ('seguridad/', views.seguridad, name='seguridad'),
     path ('registro/', views.registro, name='registro'),
     path ('dashboard/' ,views.dashboard, name='dashboard'),
-
+    path ('crear_proyecto/' , views.crear_proyecto, name = 'crear_proyecto'),
 ]

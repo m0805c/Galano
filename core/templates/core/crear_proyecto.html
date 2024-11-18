@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Proyecto</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header-top">
+        Grupo Galano
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
+        <a href="{% url 'tecnologias' %}">Tecnologías Emergentes</a>
+        <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
+        <a href="{% url 'constructora' %}">Constructora</a>
+        <a href="{% url 'registro' %}">Registro</a>
+    </div>
+
+    <!-- Main Content: Formulario para Crear Proyecto -->
+    <div class="main-content">
+        <h2>Crear Nuevo Proyecto</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn-submit">Crear Proyecto</button>
+        </form>
+
+        <!-- Mensajes de error o éxito -->
+        {% if messages %}
+        <div class="messages">
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
