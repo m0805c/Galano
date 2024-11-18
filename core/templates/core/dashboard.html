@@ -1,23 +1,54 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilo1.css' %}"> <!-- Asegúrate de tener un archivo de estilo si lo necesitas -->
 </head>
 <body>
-    <h1>Bienvenido al Dashboard</h1>
 
-    {% if proyectos %}
-        <h2>Proyectos asociados:</h2>
+
+
+
+
+
+    <div class="header-top">
+        Grupo Galano
+    </div>
+
+    <div class="navbar">
+        <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
+        <a href="{% url 'tecnologias' %}">Tecnologías Emergentes</a>
+        <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
+        <a href="{% url 'constructora' %}">Constructora</a>
+        <a href="{% url 'registro' %}">Registro</a>
+    </div>
+
+  
+    <header>
+        <h1>Bienvenido a tu Dashboard, {{ user.username }}!</h1>
+        <p>Correo: {{ user.email }}</p>
+    </header>
+
+    <main>
+        <h2>Tus Proyectos</h2>
         <ul>
-            {% for proyecto in proyectos %}
-                <li>{{ proyecto.nombre }} - {{ proyecto.estado }}</li>
-            {% endfor %}
+            {% if proyectos %}
+                {% for proyecto in proyectos %}
+                    <li>
+                        <strong>{{ proyecto.nombre }}</strong> - Estado: {{ proyecto.estado }}
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>No tienes proyectos asignados.</li>
+            {% endif %}
         </ul>
-    {% else %}
-        <p>No tienes proyectos asociados.</p>
-    {% endif %}
+    </main>
+
+    <footer>
+        <p><a href="{% url 'logout' %}">Cerrar sesión</a></p> <!-- Añadir link para cerrar sesión -->
+    </footer>
 </body>
 </html>

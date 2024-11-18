@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
 </head>
+
 <body>
 
     <div class="header-top">
@@ -23,56 +25,35 @@
 
     <div class="main-content">
         <h2>Inicia sesión en tu cuenta</h2>
-        
+
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Iniciar Sesión</button>
+            <button type="submit">Iniciar Sesiooon</button>
         </form>
-        
-       
+
+
 
 
         {% block content%}{% endblock %}
-
-        <form method="POST">
-            {% csrf_token %}
-            <div>
-                <label for="username">Nombre de Usuario:</label>
-                <input type="text" name="username" id="username" required>
-            </div>
-            <div>
-                <label for="password">Contraseña:</label>
-                <input type="password" name="password" id="password" required>
-            </div>
-            <button type="submit">Iniciar Sesión</button>
-        </form>
-
-
-
-
-
-
-
-
-
 
 
         <!-- Enlace para registro -->
         <div class="registro-link">
             <p>¿No tienes cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a></p>
         </div>
-        
+
         <!-- Mostrar mensajes de error -->
         {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
         {% endif %}
-        
+
     </div>
 
 </body>
+
 </html>
