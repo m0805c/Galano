@@ -14,26 +14,7 @@
     <div class="header-top">
         Grupo Galano
     </div>
-
-
-    <div id="carouselExample" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          {% for imagen in imagenes %}
-          <div class="carousel-item {% if loop.first %}active{% endif %}">
-            <img class="d-block w-100" src="{% static imagen %}" alt="Imagen carrusel">
-          </div>
-          {% endfor %}
-        </div>
-        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Siguiente</span>
-        </a>
-      </div>
-      
+     
 
     <!-- Barra gris de navegación -->
     <div class="navbar">
@@ -45,14 +26,70 @@
     </div>
     <!-- Contenido principal -->
     <div class="main-content">
-        <h2>¿Quiénes Somos?</h2>
-        <p>En Grupo Galano, nos dedicamos a ofrecer soluciones innovadoras que satisfacen las necesidades de nuestros clientes. Descubre más sobre nuestra misión, visión y valores.</p>
-        <h4>Misión:</h4>
-        <p>“Nuestra misión en Grupo Galano es proporcionar soluciones integrales y sostenibles que mejoren la calidad de vida de nuestros clientes y comunidades. Nos dedicamos a ofrecer tecnología de vanguardia en energía solar, sistemas de seguridad confiables y la creación de espacios abiertos funcionales y estéticamente atractivos. Trabajamos con compromiso y profesionalismo para garantizar la satisfacción de nuestros clientes, promoviendo la eficiencia energética, la seguridad y el bienestar en cada proyecto que emprendemos.”</p>
-
-        <h4>Visión:</h4>
-        <p>“Ser líderes en la provisión de servicios de tecnología y construcción, reconocidos por nuestra innovación, calidad y enfoque en la sostenibilidad. En Grupo Galano, aspiramos a marcar la diferencia en cada hogar y empresa que atendemos, liderando la adopción de tecnologías emergentes y soluciones de seguridad avanzadas, así como la construcción de espacios abiertos que inspiren y transformen entornos. Nos esforzamos por ser un referente de confianza en el mercado, ofreciendo un servicio excepcional que impulse un futuro más seguro y sostenible para todos.”</p>
-    </div>
+      <section>
+          <h2>¿Quiénes Somos?</h2>
+          <p class="intro-text">
+              En <strong>Grupo Galano</strong>, nos dedicamos a ofrecer soluciones innovadoras que satisfacen las necesidades de nuestros clientes. Descubre más sobre nuestra misión, visión y valores. Somos una empresa comprometida con la sostenibilidad y la innovación en cada uno de nuestros proyectos.
+          </p>
+          
+          <div class="content-box">
+              <img src="{% static 'images/historia.png' %}" alt="Nuestra Historia" class="imagen2">
+              <h3>Nuestra Historia</h3>
+              <p>
+                  Fundada en 2010, <strong>Grupo Galano</strong> ha crecido de ser una pequeña empresa local a un referente en soluciones tecnológicas y construcción sostenible. A lo largo de los años, hemos trabajado en más de 500 proyectos exitosos, integrando tecnología de punta y prácticas ecológicas para ofrecer resultados excepcionales a nuestros clientes.
+              </p>
+          </div>
+      
+          <div class="content-box">
+              <img src="{% static 'images/mision.jfif' %}" alt="Nuestra Misión" class="imagen3">
+              <h3>Misión</h3>
+              <p>
+                  “Nuestra misión en Grupo Galano es proporcionar soluciones integrales y sostenibles que mejoren la calidad de vida de nuestros clientes y comunidades. Nos dedicamos a ofrecer tecnología de vanguardia en energía solar, sistemas de seguridad confiables y la creación de espacios abiertos funcionales y estéticamente atractivos. Trabajamos con compromiso y profesionalismo para garantizar la satisfacción de nuestros clientes, promoviendo la eficiencia energética, la seguridad y el bienestar en cada proyecto que emprendemos.”
+              </p>
+          
+          </div>
+      
+          <div class="content-box">
+              <img src="{% static 'images/valores.jpg' %}" alt="Nuestra Visión" class="imagen">
+              <h3>Visión</h3>
+              <p>
+                  “Ser líderes en la provisión de servicios de tecnología y construcción, reconocidos por nuestra innovación, calidad y enfoque en la sostenibilidad. En Grupo Galano, aspiramos a marcar la diferencia en cada hogar y empresa que atendemos, liderando la adopción de tecnologías emergentes y soluciones de seguridad avanzadas, así como la construcción de espacios abiertos que inspiren y transformen entornos. Nos esforzamos por ser un referente de confianza en el mercado, ofreciendo un servicio excepcional que impulse un futuro más seguro y sostenible para todos.”
+              </p>
+          </div>
+      
+          <div class="content-box">
+              <img src="{% static 'images/valores.jpg' %}" alt="Nuestros Valores" class="imagen">
+              <h3>Valores de Nuestra Empresa</h3>
+              <ul class="values-list">
+                  <li>
+                      <strong>Innovación y Sostenibilidad:</strong> Promover soluciones innovadoras y sostenibles en cada proyecto, priorizando la eficiencia energética y el impacto ambiental positivo.
+                  </li>
+                  <li>
+                      <strong>Calidad y Excelencia:</strong> Garantizar productos y servicios de la más alta calidad, cumpliendo con estándares de construcción y tecnología.
+                  </li>
+                  <li>
+                      <strong>Compromiso con la Seguridad:</strong> Asegurar que todos los proyectos prioricen la seguridad de los clientes y sus instalaciones, utilizando tecnología confiable y certificada.
+                  </li>
+                  <li>
+                      <strong>Responsabilidad Social:</strong> Contribuir al desarrollo de comunidades mediante la implementación de soluciones que beneficien a las personas y al medio ambiente.
+                  </li>
+                  <li>
+                      <strong>Integridad y Transparencia:</strong> Actuar con ética, honestidad y transparencia en todas las relaciones con clientes, socios y proveedores.
+                  </li>
+                  <li>
+                      <strong>Atención al Cliente:</strong> Brindar un servicio personalizado, buscando entender y satisfacer las necesidades específicas de cada cliente.
+                  </li>
+                  <li>
+                      <strong>Trabajo en Equipo:</strong> Fomentar la colaboración y la comunicación efectiva entre los miembros del equipo para alcanzar los objetivos comunes.
+                  </li>
+                  <li>
+                      <strong>Adaptabilidad:</strong> Estar preparados para responder a las demandas cambiantes del mercado y a las necesidades tecnológicas emergentes.
+                  </li>
+              </ul>
+          </div>
+      </section>
+  </div>
+  
 
 </body>
 </html>
