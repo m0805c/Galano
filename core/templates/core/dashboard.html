@@ -1,33 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
 </head>
 <body>
-    <div class="header-top">
-        Bienvenido, {{ user.username }}!
-    </div>
+    <h1>Bienvenido al Dashboard</h1>
 
-    <div class="navbar">
-        <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
-        <a href="{% url 'tecnologias' %}">Tecnologías Emergentes</a>
-        <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
-        <a href="{% url 'constructora' %}">Constructora</a>
-    </div>
-
-    <div class="main-content">
-        <h2>Proyectos de {{ user.username }}</h2>
+    {% if proyectos %}
+        <h2>Proyectos asociados:</h2>
         <ul>
             {% for proyecto in proyectos %}
-                <li>{{ proyecto.nombre }} - {{ proyecto.descripcion }}</li>
-            {% empty %}
-                <li>No tienes proyectos registrados.</li>
+                <li>{{ proyecto.nombre }} - {{ proyecto.estado }}</li>
             {% endfor %}
         </ul>
-    </div>
+    {% else %}
+        <p>No tienes proyectos asociados.</p>
+    {% endif %}
 </body>
 </html>

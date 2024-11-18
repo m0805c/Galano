@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate # type: ignore
 from django.contrib import messages # type: ignore #type : ignore
 from .forms import RegistroForm
 from core.models import User # type: ignore # type : ignore
+from django.contrib.auth.decorators import login_required  # type: ignore
 #vista para registrar nuevos usuarios
 
 def registro(request):
@@ -30,25 +31,31 @@ from django.shortcuts import render, redirect # type: ignore
 from django.contrib.auth import authenticate, login # type: ignore
 from django.contrib import messages # type: ignore
 
-def login_view(request):
-    if request.user.is_authenticated:
-        return redirect('dashboard')  # Si ya está autenticado, redirigir al dashboard
 
+
+
+
+
+
+
+from django.contrib.auth.forms import AuthenticationForm  # type: ignore
+from django.shortcuts import render, redirect  # type: ignore
+from django.contrib import messages  # type: ignore
+from django.contrib.auth import login  # type: ignore # Asegúrate de importar 'login'
+
+def iniciosesion(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        
-        user = authenticate(request, username=username, password=password)
-        
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'Has iniciado sesión correctamente.')
-            return redirect('dashboard')  # Redirigir al dashboard después de iniciar sesión
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()  # Recupera al usuario autenticado
+            login(request, user)  # Inicia la sesión del usuario
+            return redirect('dashboard')  # Redirige al dashboard
         else:
-            messages.error(request, 'Usuario o contraseña incorrectos.')
-    
-    return render(request, 'core/iniciosesion.html')
+            messages.error(request, 'Usuario o contraseña incorrectos.')  # Si hay error
+    else:
+        form = AuthenticationForm()  # Si es GET, mostramos el formulario vacío
 
+    return render(request, 'core/iniciosesion.html', {'form': form})
 
 
 
@@ -64,8 +71,6 @@ def landing_page (request):
 def quienes_somos (request):
     return render (request, 'core/quienes_somos.html')
 
-def iniciosesion (request):
-    return render (request, 'core/iniciosesion.html')
 
 def tecnologias (request):
     return render (request, 'core/tecnologias.html')
@@ -86,11 +91,18 @@ def seguridad (request):
 
 from django.shortcuts import render # type: ignore # type : ignore 
 from django.contrib.auth.decorators import login_required # type: ignore
-from .models import Proyecto  
+from .models import Cliente, Proyecto  
 
 @login_required
 def dashboard(request):
+    try:
+        # Obtenemos el cliente asociado al usuario logueado
+        cliente = Cliente.objects.get(usuario=request.user)
 
-    proyectos = Proyecto.objects.filter(cliente__user=request.user)
+        # Filtramos los proyectos que están relacionados con ese cliente
+        proyectos = Proyecto.objects.filter(cliente=cliente)
+    except Cliente.DoesNotExist:
+        # Si no existe el cliente, asignamos una lista vacía
+        proyectos = []
 
-    return render(request, 'dashboard.html', {'proyectos': proyectos})
+    return render(request, 'core/dashboard.html', {'proyectos': proyectos})

@@ -117,7 +117,7 @@ class Cliente(models.Model):
     direccion = models.CharField(max_length=255)
     telefono = models.CharField(max_length=20, null= True, blank = True)
     email = models.EmailField(max_length=255, unique= True)
-    usuario = models.ForeignKey('User' , on_delete=models.CASCADE, related_name='clientes', null=True, blank = True)
+    usuario = models.ForeignKey('User' , on_delete=models.CASCADE, related_name='clientes', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -22,12 +22,12 @@ Including another URLconf
 from django.contrib import admin # type: ignore
 from django.urls import path, include  # type: ignore
 from django.conf.urls.static import static # type: ignore
-
 from galano import settings # type: ignore
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('' , include('core.urls')) # type: ignore
+    path('' , include('core.urls')), # type: ignore
+    path('accounts/' , include('django.contrib.auth.urls')), # type: ignore
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 
