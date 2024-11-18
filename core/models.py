@@ -148,7 +148,7 @@ class Proyecto(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
+    class Meta:     #la clase meta sirve para manipular el comportamiento del modelo, al menos en este caso sirve para poder darle ordering 
         
         ordering = ['-created_at']  # IMPORTANTE ordena la fecha de creación de manera descendente
         verbose_name = 'Proyecto'

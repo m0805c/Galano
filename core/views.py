@@ -106,3 +106,30 @@ def dashboard(request):
         proyectos = []
 
     return render(request, 'core/dashboard.html', {'proyectos': proyectos})
+
+
+
+
+## vista para cuando se quiere crear proyecto: inicio de sesion - crear proyecto 
+
+from .forms import ProyectoForm # type: ignore
+from django.contrib.auth.decorators import login_required # type: ignore # type : ignore
+
+
+@login_required
+def crear_proyecto(request):
+    if request.method == 'POST':
+        form = ProyectoForm(request.POST)
+        if form.is_valid():
+            
+            proyecto = form.save(commit=False)
+            proyecto.usuario = request.user
+            proyecto.save()
+
+            messages.success (request, 'Proyecyo creado con exito')
+            return redirect('dashboard') #redirige al dashboard del cliente
+
+    else:
+        form = ProyectoForm()
+
+        return render (request, 'core/crear_proyecto.html' , {'form': form})
