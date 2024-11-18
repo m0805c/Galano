@@ -131,3 +131,44 @@ h1, h2 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
    float: right;
 }
+
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.service-card {
+    background: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 350px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card img {
+    width: 100%;
+    height: auto;
+}
+
+.service-card h3 {
+    font-size: 1.8rem;
+    margin: 20px 0 10px;
+    color: #16a085;
+}
+
+.service-card p {
+    padding: 0 15px 20px;
+    color: #555;
+}
+
+header{
+    margin: 0 20px;
+}
