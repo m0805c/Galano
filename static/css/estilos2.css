@@ -1,0 +1,133 @@
+/*estilo del header*/
+
+.header-top {
+    background-color: #f88a23; 
+    color: white;
+    text-align: center;
+    padding: 10px 0;  
+    font-size: 20px;  
+    font-weight:normal;
+    margin: 0; 
+    position: relative;  
+    width: 100%;
+    z-index: 10;
+    border-bottom: none; 
+}
+
+
+/*estilos de la navbar*/
+
+.navbar {
+    background-color: #808080; 
+    color: white;
+    text-align: center;
+    padding: 1px 0;  
+    font-size: 15px;
+    display: flex;
+    justify-content: space-evenly;  
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;  
+    z-index: 5;
+    border-top: none; 
+    margin: 0;  
+}
+
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 30px;  
+    font-weight: lighter;
+    padding: 8px 15px;
+    font-family: Arial;  
+}
+
+.navbar a:hover {
+    background-color: #434343; 
+    border-radius: 20px;
+    transition: background-color 0.7s ease;
+}
+
+
+/*estilos generales*/
+
+body {
+    font-family: Arial; 
+    background-color: white;
+    font-weight: lighter;
+    margin: 0;
+    padding: 0; 
+    line-height: 1.6;
+}
+
+
+h1, h2 {
+    text-align: center;
+    margin: 20px 0;
+    font-family: Arial;  
+}
+
+.main-content{
+    margin: 0 20px;
+}
+
+.izq{
+    float: left;
+}
+.imagen {
+    width: 100%;
+    max-width: 500px;
+    margin: 10px auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    float: right;
+}
+.btn {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #120b55;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.content-box {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+.intro-text {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 30px;
+}
+.imagen2 {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    float: right;
+}
+.imagen3 {
+    width: 100%;
+    max-width: 400px;
+    margin: 10px auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    float: left;
+}
+.space-img {
+    width: 300px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   float: right;
+}
