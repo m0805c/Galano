@@ -53,7 +53,7 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     width: 100%;
-    max-width: 1420px;
+    max-width: 1380px;
     box-sizing:content-box;
     margin-top: 20px; /* Espacio después de la navbar */
 }
