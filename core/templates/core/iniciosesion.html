@@ -26,7 +26,7 @@
         <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
     </div>
 
-    <!-- Main Content: Formulario de inicio de sesión -->
+  
     <div class="main-content">
         <h2>Inicia sesión en tu cuenta</h2>
 
@@ -34,12 +34,12 @@
         <div class="login-form">
             <form method="POST">
                 {% csrf_token %}
-                
-                <!-- Aquí se renderizan los campos del formulario de manera más estilizada -->
+
+                <!-- Aquí se renderizan los campos del formulario  -->
                 <div class="form-group">
                     {{ form.as_p }}
                 </div>
-                
+
                 <button type="submit" class="btn-submit">Iniciar Sesión</button>
             </form>
         </div>
@@ -59,7 +59,7 @@
             </ul>
         </div>
         {% endif %}
-        
+
     </div>
 
 </body>

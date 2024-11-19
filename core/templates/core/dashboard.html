@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/estilo1.css' %}"> <!-- Asegúrate de tener un archivo de estilo si lo necesitas -->
+    <link rel="stylesheet" href="{% static 'css/estilo1.css' %}"> 
 </head>
 <body>
 
@@ -45,7 +45,7 @@
         <div>
             <h3>{{ proyecto.nombre }}</h3>
             <p>{{ proyecto.descripcion }}</p>
-            <!-- El enlace para eliminar el proyecto -->
+            <!--  enlace para eliminar el proyecto y la relacion del proyecto con el id -->
             <a href="{% url 'eliminar_proyecto' proyecto.id %}" onclick="return confirm('¿Estás seguro de que quieres eliminar este proyecto?');">Eliminar Proyecto</a>
         </div>
     {% endfor %}
@@ -59,7 +59,7 @@
     </main>
 
     <footer>
-        <p><a href="{% url 'landing_page' %}">Cerrar sesión</a></p> <!-- Añadir link para cerrar sesión -->
+        <p><a href="{% url 'landing_page' %}">Cerrar sesión</a></p> <!--link para cerrar sesión -->
     </footer>
 </body>
 </html>

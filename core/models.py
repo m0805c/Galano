@@ -29,9 +29,17 @@ class Contacto (models.Model):      #modelo del contacto
 
 #######===========
 
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager # type: ignore
 
-class CustomUserManager(BaseUserManager):
+
+##administrador de usuarios 
+
+
+
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager # type: ignore
+class CustomUserManager(BaseUserManager):#clase de django para crear usuarios personalizados (se usa para crear un admin  personalizado) y no usar el metodo User de django 
+
+
+    #modelo para crear un usuario regular
     def create_user(self, username, email, password=None, rol=None):
         if not email:
             raise ValueError("El email debe ser proporcionado")
@@ -41,6 +49,8 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
+#creacion de usuario para permisos administrativos (Hay que crear al admin)
     def create_superuser(self, username, email, password=None, rol=None):
         user = self.create_user(username, email, password, rol)
         user.is_staff = True
@@ -48,6 +58,8 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
+#mi usuario /no Django
 class User(AbstractBaseUser):
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(unique=True)
@@ -75,6 +87,8 @@ class User(AbstractBaseUser):
 
 
 
+
+#modulos para registro
 from django.contrib.auth import login # type: ignore
 from django.shortcuts import render,  redirect # type: ignore
 from django.contrib import messages # type: ignore
@@ -108,9 +122,9 @@ def registro(request):
 
 
 
-## a partir de aqui se definen los modelos para trabajar con clientes 
+## a partir de aqui se define el modelo para trabajar con clientes 
 
-
+#modulos para el cliente y el proyecto 
 from django.db import models # type: ignore
 from django.conf import settings  # type: ignore # Para usar el modelo de usuario dinámico
 
@@ -158,7 +172,7 @@ class Proyecto(models.Model):
     def __str__(self):
         return self.nombre
 
-# Aquí va la lógica que usa RegistroForm (solo importa en este momento)
+# Aquí va la lógica que usa RegistroForm (solo importa en este momento por el problema de circundancia)
 def some_model_logic():
     from .forms import RegistroForm  # Importación diferida
-    # Usa RegistroForm aquí
+

@@ -4,9 +4,7 @@ from .models import Proyecto
 from .forms import ProyectoForm
 
 def crear_proyecto_servicio(request, form_data):
-    """
-    Lógica para crear un proyecto con los datos del formulario.
-    """
+#logica para crear un proyecto
     form = ProyectoForm(form_data)
     if form.is_valid():
         proyecto = form.save(commit=False)

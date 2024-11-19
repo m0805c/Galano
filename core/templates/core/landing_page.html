@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/estilo2.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/estilo2.css' %}">
 </head>
+
 <body>
 
   <div class="header-top">
     Grupo Galano
- </div>
+  </div>
 
 
   <div class="navbar">
@@ -21,41 +23,45 @@
     <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
     <a href="{% url 'constructora' %}">Constructora</a>
     <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
-</div>
+  </div>
 
-<header>
-  <h1>Transforma tu Mundo con Soluciones Innovadoras</h1>
-  <p class="intro-text">
-      Tecnología de vanguardia en energía solar, seguridad y construcción de espacios abiertos. <br> 
+  <header>
+    <h1>Transforma tu Mundo con Soluciones Innovadoras</h1>
+    <p class="intro-text">
+      Tecnología de vanguardia en energía solar, seguridad y construcción de espacios abiertos. <br>
       Descubre cómo podemos ayudarte en <strong>Grupo Galano</strong>.
-  </p>
-</header>
+    </p>
+  </header>
 
-<section>
-  <h2>Nuestros Servicios</h2>
-  <div class="services">
+  <section>
+    <h2>Nuestros Servicios</h2>
+    <div class="services">
       <div class="service-card">
-          <img src="{% static 'images/paneles-instalacion.jpg' %}" alt="Energía Solar"  >
-          <h3>Tecnologías Emergentes</h3>
-          <p>Ahorra en tus facturas de electricidad y contribuye al cuidado del medio ambiente con nuestros paneles solares de última generación. <br> 
+        <img src="{% static 'images/paneles-instalacion.jpg' %}" alt="Energía Solar">
+        <h3>Tecnologías Emergentes</h3>
+        <p>Ahorra en tus facturas de electricidad y contribuye al cuidado del medio ambiente con nuestros paneles
+          solares de última generación. <br>
           Disfruta de energía limpia, incentivos fiscales y una solución eficiente para tu hogar o negocio.</p>
       </div>
 
       <div class="service-card">
-          <img src="{% static 'images/camaras-instalacion.jpg' %}" alt="Seguridad" >
-          <h3>Seguridad y Tecnología</h3>
-          <p>Protege tu hogar o empresa con nuestros sistemas avanzados de seguridad. <br> 
-          Ofrecemos cámaras de circuito cerrado, alarmas inteligentes, monitoreo remoto y servicios de instalación personalizada.</p>
+        <img src="{% static 'images/camaras-instalacion.jpg' %}" alt="Seguridad">
+        <h3>Seguridad y Tecnología</h3>
+        <p>Protege tu hogar o empresa con nuestros sistemas avanzados de seguridad. <br>
+          Ofrecemos cámaras de circuito cerrado, alarmas inteligentes, monitoreo remoto y servicios de instalación
+          personalizada.</p>
       </div>
 
       <div class="service-card">
-          <img src="{% static 'images/jardines-instalacion.jpg' %}" alt="Construcción" >
-          <h3>Construcción de Espacios</h3>
-          <p>Diseñamos y construimos espacios abiertos funcionales y modernos. <br> 
-          Desde terrazas y áreas recreativas hasta jardines urbanos, nuestro equipo crea soluciones que combinan estética, sostenibilidad y confort.</p>
+        <img src="{% static 'images/jardines-instalacion.jpg' %}" alt="Construcción">
+        <h3>Construcción de Espacios</h3>
+        <p>Diseñamos y construimos espacios abiertos funcionales y modernos. <br>
+          Desde terrazas y áreas recreativas hasta jardines urbanos, nuestro equipo crea soluciones que combinan
+          estética, sostenibilidad y confort.</p>
       </div>
-  </div>
-</section>
-    
+    </div>
+  </section>
+
 </body>
+
 </html>
