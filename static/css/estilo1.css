@@ -123,3 +123,6 @@ body {
 .error-messages li {
     margin-bottom: 5px;
 }
+.main-content{
+    margin: 0 20px;
+}

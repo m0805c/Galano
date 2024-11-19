@@ -21,7 +21,7 @@
         <a href="{% url 'constructora' %}">Constructora</a>
         <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
     </div>
-  
+  <div class="main-content">
     <header>
         <h1>Bienvenido a tu Dashboard, {{ user.username }}!</h1>
         <p>Correo: {{ user.email }}</p>
@@ -61,5 +61,6 @@
     <footer>
         <p><a href="{% url 'landing_page' %}">Cerrar sesión</a></p> <!--link para cerrar sesión -->
     </footer>
+</div>
 </body>
 </html>
