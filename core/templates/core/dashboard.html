@@ -9,11 +9,6 @@
 </head>
 <body>
 
-
-
-
-
-
     <div class="header-top">
         Grupo Galano
     </div>
@@ -45,6 +40,22 @@
                 <li>No tienes proyectos asignados.</li>
             {% endif %}
         </ul>
+
+        {% for proyecto in proyectos %}
+        <div>
+            <h3>{{ proyecto.nombre }}</h3>
+            <p>{{ proyecto.descripcion }}</p>
+            <!-- El enlace para eliminar el proyecto -->
+            <a href="{% url 'eliminar_proyecto' proyecto.id %}" onclick="return confirm('¿Estás seguro de que quieres eliminar este proyecto?');">Eliminar Proyecto</a>
+        </div>
+    {% endfor %}
+
+    
+
+        <!-- Enlace para crear un nuevo proyecto -->
+        <div>
+            <a href="{% url 'crear_proyecto' %}" class="btn-crear-proyecto">Crear un nuevo proyecto</a>
+        </div>
     </main>
 
     <footer>

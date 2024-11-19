@@ -78,11 +78,11 @@ class User(AbstractBaseUser):
 from django.contrib.auth import login # type: ignore
 from django.shortcuts import render,  redirect # type: ignore
 from django.contrib import messages # type: ignore
-from .forms import RegistroForm
+
 
 def registro(request):
     if request.method == "POST":
-        form = RegistroForm(request.POST)
+        form = RegistroForm(request.POST) # type: ignore
         if form.is_valid():
             # Crear usuario usando el formulario
             user = form.save(commit=False)
@@ -111,31 +111,32 @@ def registro(request):
 ## a partir de aqui se definen los modelos para trabajar con clientes 
 
 
+from django.db import models # type: ignore
+from django.conf import settings  # type: ignore # Para usar el modelo de usuario dinámico
 
+# Modelo Cliente
 class Cliente(models.Model):
     nombre = models.CharField(max_length=255)
     direccion = models.CharField(max_length=255)
-    telefono = models.CharField(max_length=20, null= True, blank = True)
-    email = models.EmailField(max_length=255, unique= True)
-    usuario = models.ForeignKey('User' , on_delete=models.CASCADE, related_name='clientes', null=True)
+    telefono = models.CharField(max_length=20, null=True, blank=True)
+    email = models.EmailField(max_length=255, unique=True)
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='clientes', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
 
     def __str__(self):
         return self.nombre
     
-    class Meta: 
+    class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
 
 
-
-
+# Modelo Proyecto
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=255)
     descripcion = models.CharField(max_length=1000)
-    cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name='proyectos')
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='proyectos')  # Relación con Cliente
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField(null=True, blank=True)
     estado = models.CharField(max_length=50, choices=[
@@ -144,21 +145,20 @@ class Proyecto(models.Model):
         ('pendiente', 'Pendiente'),
     ], default='activo')
 
-    usuario = models.ForeignKey('User', on_delete=models.CASCADE, related_name='proyectos')
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='proyectos')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    Contacto = models.CharField(max_length=255, null=True, blank=True)
 
-    class Meta:     #la clase meta sirve para manipular el comportamiento del modelo, al menos en este caso sirve para poder darle ordering 
-        
-        ordering = ['-created_at']  # IMPORTANTE ordena la fecha de creación de manera descendente
+    class Meta:
+        ordering = ['-created_at']
         verbose_name = 'Proyecto'
         verbose_name_plural = 'Proyectos'
 
     def __str__(self):
         return self.nombre
 
-
-
-
-
-
+# Aquí va la lógica que usa RegistroForm (solo importa en este momento)
+def some_model_logic():
+    from .forms import RegistroForm  # Importación diferida
+    # Usa RegistroForm aquí

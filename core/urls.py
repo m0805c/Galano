@@ -17,4 +17,5 @@ urlpatterns = [
     path ('registro/', views.registro, name='registro'),
     path ('dashboard/' ,views.dashboard, name='dashboard'),
     path ('crear_proyecto/' , views.crear_proyecto, name = 'crear_proyecto'),
+    path('eliminar_proyecto/<int:proyecto_id>/', views.eliminar_proyecto, name='eliminar_proyecto'),
 ]

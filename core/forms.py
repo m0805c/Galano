@@ -13,16 +13,14 @@ class RegistroForm(forms.ModelForm):
 
 
 ##aqui cree el formulario para el modelo proyecto 
+from django import forms # type: ignore
+from .models import Proyecto
 
-from django import forms  # type: ignore
-from .models import Proyecto 
-class ProyectoForm(forms.ModelForm):#crrar formularios basados en el modelo de los proyectos 
+class ProyectoForm(forms.ModelForm):
     class Meta:
-        model = Proyecto        #datos que va a recibir 
-        fields = ['nombre' , 'descripción' , 'cliente' , 'fecha_inicio' , 'fecha_fin' , 'estado']
-
-
-        #widget para los campos de fecha para que se vuelvan selectores 
-
-        'fecha_inicio': forms.DateInput(attrs={'type': 'date'}) # type: ignore
-        'fecha_fin': forms.DateInput(attrs={'type': 'date'}) # type: ignore
+        model = Proyecto
+        fields = ['nombre', 'descripcion', 'fecha_inicio', 'fecha_fin', 'estado', 'Contacto']
+        widgets = {
+            'fecha_inicio': forms.DateInput(attrs={'type': 'date'}),
+            'fecha_fin': forms.DateInput(attrs={'type': 'date'}),
+        }
