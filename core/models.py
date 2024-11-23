@@ -195,9 +195,9 @@ class Cita(models.Model):
     #estado de la cita 
 
     ESTADO_CITA = [
-        ('pendiente' , 'Pendiente')
-        ('confirmada' , 'Confirmada')
-        ('cancelada' , 'Cancelada')
+        ('pendiente' , 'Pendiente'),
+        ('confirmada' , 'Confirmada'),
+        ('cancelada' , 'Cancelada'),
     ]
     estado = models.CharField(max_length=10, choices=ESTADO_CITA, default='pendiente')
 

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cita</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
+</head>
+<body>
+
+    <div class="header-top">
+        Grupo Galano
+    </div>
+
+    <div class="navbar">
+        <a href="{% url 'landing_page' %}">Galano</a>
+        <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
+        <a href="{% url 'tecnologias' %}">Tecnologías Emergentes</a>
+        <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
+        <a href="{% url 'constructora' %}">Constructora</a>
+        <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Crear Nueva Cita</h1>
+            <p>Completa los campos para agendar una cita con nuestros asesores.</p>
+        </header>
+
+        <main>
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="nombre_proyecto">Nombre del Proyecto</label>
+                    <input type="text" id="nombre_proyecto" name="nombre_proyecto" value="{{ form.nombre_proyecto.value }}" required>
+                    {% if form.nombre_proyecto.errors %}
+                        <ul>
+                            {% for error in form.nombre_proyecto.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_cita">Fecha de la Cita</label>
+                    <input type="date" id="fecha_cita" name="fecha_cita" value="{{ form.fecha_cita.value }}" required>
+                    {% if form.fecha_cita.errors %}
+                        <ul>
+                            {% for error in form.fecha_cita.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="hora_cita">Hora de la Cita</label>
+                    <input type="time" id="hora_cita" name="hora_cita" value="{{ form.hora_cita.value }}" required>
+                    {% if form.hora_cita.errors %}
+                        <ul>
+                            {% for error in form.hora_cita.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción del Proyecto</label>
+                    <textarea id="descripcion" name="descripcion" rows="4" required>{{ form.descripcion.value }}</textarea>
+                    {% if form.descripcion.errors %}
+                        <ul>
+                            {% for error in form.descripcion.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn-crear-cita">Crear Cita</button>
+                </div>
+            </form>
+
+            <div>
+                <a href="{% url 'dashboard' %}" class="btn-regresar">Regresar al Dashboard</a>
+            </div>
+        </main>
+
+    </div>
+
+    <footer>
+        <p><a href="{% url 'landing_page' %}">Cerrar sesión</a></p>
+    </footer>
+
+</body>
+</html>
