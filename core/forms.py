@@ -34,7 +34,7 @@ from .models import Cita
 class CitaForm (forms.ModelForm):
     class Meta:
         model = Cita
-        fields = ['fecha' , 'descripción']
+        fields = ['fecha' , 'descripcion']
         widgets = {
             'fecha': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }

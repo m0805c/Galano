@@ -3,64 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Proyecto</title>
+    <title>Crear Cita</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
 </head>
-
 <body>
-    <!-- Header -->
+
     <div class="header-top">
         Grupo Galano
     </div>
 
-    <!-- Navbar -->
     <div class="navbar">
+        <a href="{% url 'landing_page' %}">Galano</a>
         <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
         <a href="{% url 'tecnologias' %}">Tecnologías Emergentes</a>
         <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
         <a href="{% url 'constructora' %}">Constructora</a>
-        <a href="{% url 'registro' %}">Registro</a>
+        <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
     </div>
 
-    <!-- Main Content: Formulario para Crear Proyecto -->
     <div class="main-content">
-        <h2>Crear Nuevo Proyecto</h2>
+        <header>
+            <h1>Crear Nueva Cita</h1>
+            <p>Completa los campos para agendar una cita con nuestros asesores.</p>
+        </header>
 
-        <form method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="{{ form.nombre.id_for_label }}">Nombre del Proyecto</label>
-                {{ form.nombre }}
+        <main>
+            <form method="POST">
+                {% csrf_token %}
+                
+                <!-- Campo de fecha y hora de la cita -->
+                <div class="form-group">
+                    <label for="fecha">Fecha y Hora de la Cita</label>
+                    <input type="datetime-local" id="fecha" name="fecha" value="{{ form.fecha.value }}" required>
+                    {% if form.fecha.errors %}
+                        <ul>
+                            {% for error in form.fecha.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
 
-                <label for="{{ form.descripcion.id_for_label }}">Descripción</label>
-                {{ form.descripcion }}
+                <!-- Campo de descripción del proyecto -->
+                <div class="form-group">
+                    <label for="descripcion">Descripción del Proyecto</label>
+                    <textarea id="descripcion" name="descripcion" rows="4" required>{{ form.descripcion.value }}</textarea>
+                    {% if form.descripcion.errors %}
+                        <ul>
+                            {% for error in form.descripcion.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
 
-                <label for="{{ form.fecha_inicio.id_for_label }}">Fecha de Inicio</label>
-                {{ form.fecha_inicio }}
+                <!-- Botón de envío -->
+                <div class="form-group">
+                    <button type="submit" class="btn-crear-cita">Crear Cita</button>
+                </div>
+            </form>
 
-                <label for="{{ form.fecha_fin.id_for_label }}">Fecha de Fin</label>
-                {{ form.fecha_fin }}
-
-                <label for="{{ form.estado.id_for_label }}">Estado</label>
-                {{ form.estado }}
-
-                <label for="{{ form.Contacto.id_for_label }}">Contacto</label>
-                {{ form.Contacto }}
+            <div>
+                <a href="{% url 'dashboard' %}" class="btn-regresar">Regresar al Dashboard</a>
             </div>
-            <button type="submit" class="btn-submit">Crear Proyecto</button>
-        </form>
+        </main>
 
-        <!-- Mensajes de error o éxito -->
-        {% if messages %}
-        <div class="messages">
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
     </div>
+
+    <footer>
+        <p><a href="{% url 'landing_page' %}">Cerrar sesión</a></p>
+    </footer>
+
 </body>
 </html>

@@ -200,29 +200,19 @@ def eliminar_proyecto(request, proyecto_id):
 
 
 ##vista para poder crear la cita 
-from django.shortcuts import render, redirect # type: ignore
-from django.contrib.auth.decorators import login_required  # type: ignore # Importa el decorador
-from .models import Cliente, Cita
+from django.shortcuts import render # type: ignore
 from .forms import CitaForm
+from django.contrib.auth.decorators import login_required # type: ignore
 
-# Aplica el decorador login_required a la vista
 @login_required
 def crear_cita(request):
-    try:
-        # Recupera el cliente asociado al usuario actual
-        cliente = Cliente.objects.get(usuario=request.user)
-    except Cliente.DoesNotExist:
-        # Si no existe, redirige o muestra un mensaje de error
-        return redirect('perfil_cliente')  # O alguna vista que consideres adecuada
-
-    # Si la cita se crea correctamente
     if request.method == 'POST':
         form = CitaForm(request.POST)
         if form.is_valid():
             cita = form.save(commit=False)
-            cita.cliente = cliente  # Asocia la cita con el cliente
+            cita.cliente = request.user  # Asignamos el cliente actual
             cita.save()
-            return redirect('ver_citas')  # Redirige a la vista donde se muestran las citas
+            return redirect('dashboard')  # Redirige después de crear la cita
     else:
         form = CitaForm()
 

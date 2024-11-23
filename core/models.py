@@ -187,10 +187,10 @@ from django.conf import settings  # type: ignore #para referenciar al modelo de 
 
 class Cita(models.Model):
     #cliente el cual va a solicitar la cita 
-    Cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name='citas')
+    Cliente = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='citas')
 
     fecha = models.DateTimeField()
-    descripción = models.TextField()
+    descripcion = models.TextField()
 
     #estado de la cita 
 
