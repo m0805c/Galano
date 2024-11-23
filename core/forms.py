@@ -24,3 +24,17 @@ class ProyectoForm(forms.ModelForm):
             'fecha_inicio': forms.DateInput(attrs={'type': 'date'}),
             'fecha_fin': forms.DateInput(attrs={'type': 'date'}),
         }
+
+
+#formulario para las citas, ingresaran solo la fecha y la descripción 
+
+from django import forms # type: ignore
+from .models import Cita
+
+class CitaForm (forms.ModelForm):
+    class Meta:
+        model = Cita
+        fields = ['fecha' , 'descripción']
+        widgets = {
+            'fecha': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }

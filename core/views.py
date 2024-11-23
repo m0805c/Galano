@@ -194,3 +194,43 @@ def eliminar_proyecto(request, proyecto_id):
 
     # Redirigir a la lista de proyectos del cliente o a otra página
     return redirect('dashboard')  # O cualquier otra vista a la que quieras redirigir
+
+
+
+
+
+##vista para poder crear la cita 
+
+from django.shortcuts import render, redirect # type: ignore
+from django.contrib import messages # type: ignore
+from django.contrib.auth.decorators import login_required # type: ignore
+from .forms import CitaForm
+from .models import Cliente
+
+@login_required
+def crear_cita (request):
+    try: 
+        #obtener el cliente
+        Cliente = Cliente.object.get(usuario=request.user)
+    except Cliente.DoesNotExist:
+        messages.error(request, "No se ha podido crear tu proyecto, no tienes un cliente asociado.")
+        return redirect('landing_page')
+    
+
+    if request.method == 'POST':#inicio del metodo
+        form = CitaForm(request.POST)#llama al formulario
+        if form.is_valid():
+
+            cita = form.save(commit = False)
+            cita.cliente = Cliente #asociar el cliente 
+            cita.save()
+            messages.success(request, "Se ha creado la cita con exito. ")
+            return redirect ('dashboard')
+        
+        else:
+            messages.error (request, "Hubo un error al crear la cita. Intenta Nuevamente. ")
+    else:
+        form = CitaForm()
+
+    return render (request, 'core/crear_cita.html' , {'form': form})
+ 
