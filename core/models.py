@@ -176,3 +176,36 @@ class Proyecto(models.Model):
 def some_model_logic():
     from .forms import RegistroForm  # Importación diferida
 
+
+
+
+#modelo para las citas
+
+
+from django.db import models  # type: ignore
+from django.conf import settings  # type: ignore #para referenciar al modelo de usuario 
+
+class Cita(models.Model):
+    #cliente el cual va a solicitar la cita 
+    Cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name='citas')
+
+    fecha = models.DateTimeField()
+    descripción = models.TextField()
+
+    #estado de la cita 
+
+    ESTADO_CITA = [
+        ('pendiente' , 'Pendiente')
+        ('confirmada' , 'Confirmada')
+        ('cancelada' , 'Cancelada')
+    ]
+    estado = models.CharField(max_length=10, choices=ESTADO_CITA, default='pendiente')
+
+    comentarios = models.TextField(null=True, blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+    def __str__(self):
+        return f"Cita con {self.Cliente.nombre} - {self.fecha.strftime ('%Y-%m-%d %H:%M:%S')}"
