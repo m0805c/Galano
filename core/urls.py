@@ -19,4 +19,5 @@ urlpatterns = [
     path ('crear_proyecto/' , views.crear_proyecto, name = 'crear_proyecto'),
     path('eliminar_proyecto/<int:proyecto_id>/', views.eliminar_proyecto, name='eliminar_proyecto'),
     path ('crear_cita/' , views.crear_cita, name='crear_cita'),
+    path ('eliminar_cita/<int:cita_id>/', views.eliminar_cita, name='eliminar_cita'),    
 ]

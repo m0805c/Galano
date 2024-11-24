@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/estilo1.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/estilo1.css' %}">
 </head>
 <body>
 
@@ -16,55 +16,75 @@
     <div class="navbar">
         <a href="{% url 'landing_page' %}">Galano</a>
         <a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a>
-        <a href="{% url 'tecnologias' %}">Tecnolgías Emergentes</a>
+        <a href="{% url 'tecnologias' %}">Tecnologías Emergentes</a>
         <a href="{% url 'seguridad' %}">Seguridad y Tecnología</a>
         <a href="{% url 'constructora' %}">Constructora</a>
         <a href="{% url 'iniciosesion' %}">Inicio de Sesión</a>
     </div>
-  <div class="main-content">
-    <header>
-        <h1>Bienvenido a tu Dashboard, {{ user.username }}!</h1>
-        <p>Correo: {{ user.email }}</p>
-    </header>
 
-    <main>
-        <h2>Tus Proyectos</h2>
-        <ul>
-            {% if proyectos %}
-                {% for proyecto in proyectos %}
-                    <li>
-                        <strong>{{ proyecto.nombre }}</strong> - Estado: {{ proyecto.estado }}
-                    </li>
-                {% endfor %}
-            {% else %}
-                <li>No tienes proyectos asignados.</li>
-            {% endif %}
-        </ul>
+    <div class="main-content">
+        <header>
+            <h1>Bienvenido a tu Dashboard, {{ user.username }}!</h1>
+            <p>Correo: {{ user.email }}</p>
+        </header>
 
-        {% for proyecto in proyectos %}
-        <div>
-            <h3>{{ proyecto.nombre }}</h3>
-            <p>{{ proyecto.descripcion }}</p>
-            <!--  enlace para eliminar el proyecto y la relacion del proyecto con el id -->
-            <a href="{% url 'eliminar_proyecto' proyecto.id %}" onclick="return confirm('¿Estás seguro de que quieres eliminar este proyecto?');">Eliminar Proyecto</a>
-        </div>
-    {% endfor %}
+        <main>
+            <!-- Mostrar proyectos -->
+            <h2>Tus Proyectos</h2>
+            <ul>
+                {% if proyectos %}
+                    {% for proyecto in proyectos %}
+                        <li>
+                            <strong>{{ proyecto.nombre }}</strong> - Estado: {{ proyecto.estado }}
+                            <!-- Enlace para eliminar el proyecto -->
+                            <a href="{% url 'eliminar_proyecto' proyecto.id %}" onclick="return confirm('¿Estás seguro de que quieres eliminar este proyecto?');">Eliminar Proyecto</a>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>No tienes proyectos asignados.</li>
+                {% endif %}
+            </ul>
 
-    <!-- Botón para crear una cita en el Dashboard -->
-<div>
-    <a href="{% url 'crear_cita' %}" class="btn-crear-cita">Crear una nueva cita</a>
-</div>
+            {% for proyecto in proyectos %}
+            <div>
+                <h3>{{ proyecto.nombre }}</h3>
+                <p>{{ proyecto.descripcion }}</p>
+                <!-- Enlace para eliminar el proyecto -->
+                <a href="{% url 'eliminar_proyecto' proyecto.id %}" onclick="return confirm('¿Estás seguro de que quieres eliminar este proyecto?');">Eliminar Proyecto</a>
+            </div>
+            {% endfor %}
 
+            <!-- Mostrar citas -->
+            <h2>Tus Citas</h2>
+            <ul>
+                {% if citas %}
+                    {% for cita in citas %}
+                        <li>
+                            <strong>Fecha: {{ cita.fecha }}</strong> - Estado: {{ cita.estado }}<br>
+                            Descripción: {{ cita.descripcion }}<br>
+                            <!-- Enlace para eliminar la cita -->
+                            <a href="{% url 'eliminar_cita' cita.id %}" onclick="return confirm('¿Estás seguro de que quieres eliminar esta cita?');">Eliminar Cita</a>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>No tienes citas programadas.</li>
+                {% endif %}
+            </ul>
 
-        <!-- Enlace para crear un nuevo proyecto -->
-        <div>
-            <a href="{% url 'crear_proyecto' %}" class="btn-crear-proyecto">Crear un nuevo proyecto</a>
-        </div>
-    </main>
+            <!-- Botón para crear una nueva cita -->
+            <div>
+                <a href="{% url 'crear_cita' %}" class="btn-crear-cita">Crear una nueva cita</a>
+            </div>
 
-    <footer>
-        <p><a href="{% url 'landing_page' %}">Cerrar sesión</a></p> <!--link para cerrar sesión -->
-    </footer>
-</div>
+            <!-- Enlace para crear un nuevo proyecto -->
+            <div>
+                <a href="{% url 'crear_proyecto' %}" class="btn-crear-proyecto">Crear un nuevo proyecto</a>
+            </div>
+        </main>
+
+        <footer>
+            <p><a href="{% url 'landing_page' %}">Cerrar sesión</a></p> <!--link para cerrar sesión -->
+        </footer>
+    </div>
 </body>
 </html>

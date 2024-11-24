@@ -91,21 +91,22 @@ def seguridad (request):
 
 from django.shortcuts import render # type: ignore # type : ignore 
 from django.contrib.auth.decorators import login_required # type: ignore
-from .models import Cliente, Proyecto  
+from .models import Cliente, Proyecto, Cita 
 
 @login_required
 def dashboard(request):
     try:
-        # Obtenemos el cliente asociado al usuario logueado
-        cliente = Cliente.objects.get(usuario=request.user)
+        cliente = get_object_or_404(Cliente, usuario=request.user)
 
-        # Filtramos los proyectos que están relacionados con ese cliente
         proyectos = Proyecto.objects.filter(cliente=cliente)
+   
+        citas = Cita.objects.filter(usuario=request.user)
+   
     except Cliente.DoesNotExist:
-        # Si no existe el cliente, asignamos una lista vacía
         proyectos = []
+        citas = []
 
-    return render(request, 'core/dashboard.html', {'proyectos': proyectos})
+    return render(request, 'core/dashboard.html', {'proyectos': proyectos, 'citas': citas})
 
 
 
@@ -202,18 +203,50 @@ def eliminar_proyecto(request, proyecto_id):
 ##vista para poder crear la cita 
 from django.shortcuts import render # type: ignore
 from .forms import CitaForm
+from .models import Cita 
 from django.contrib.auth.decorators import login_required # type: ignore
 
 @login_required
 def crear_cita(request):
+
     if request.method == 'POST':
         form = CitaForm(request.POST)
         if form.is_valid():
             cita = form.save(commit=False)
-            cita.cliente = request.user  # Asignamos el cliente actual
+            cita.usuario = request.user # Asignamos el cliente actual
             cita.save()
             return redirect('dashboard')  # Redirige después de crear la cita
     else:
         form = CitaForm()
 
-    return render(request, 'crear_cita.html', {'form': form})
+    return render(request, 'core/crear_cita.html', {'form': form})
+
+
+
+##vista para eliminar citas 
+
+from django.shortcuts import get_object_or_404, redirect # type: ignore
+from django.contrib import messages # type: ignore
+from django.contrib.auth.decorators import login_required # type: ignore
+from .models import Cita
+
+@login_required
+def eliminar_cita(request, cita_id):
+    """
+    Vista para que el cliente pueda eliminar una cita.
+    Verifica que la cita pertenece al cliente logueado antes de eliminarla.
+    """
+    # Obtener la cita (con una validación de que pertenece al usuario logueado)
+    cita = get_object_or_404(Cita, id=cita_id, usuario=request.user)
+
+    # La cita debe estar asociada al usuario logueado
+    if cita.usuario == request.user:
+        # Eliminar la cita
+        cita.delete()
+        messages.success(request, 'Cita eliminada correctamente.')
+    else:
+        # Si la cita no pertenece al usuario, mostramos un error
+        messages.error(request, 'No tienes permiso para eliminar esta cita.')
+
+    # Redirigir al dashboard o cualquier otra página después de eliminar la cita
+    return redirect('dashboard')  # O cualquier otra vista a la que quieras redirigir
