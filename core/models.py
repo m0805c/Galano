@@ -35,7 +35,7 @@ class Contacto (models.Model):      #modelo del contacto
 
 
 
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager # type: ignore
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,PermissionsMixin # type: ignore
 class CustomUserManager(BaseUserManager):#clase de django para crear usuarios personalizados (se usa para crear un admin  personalizado) y no usar el metodo User de django 
 
 
@@ -60,7 +60,7 @@ class CustomUserManager(BaseUserManager):#clase de django para crear usuarios pe
 
 
 #mi usuario /no Django
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(unique=True)
     rol = models.ForeignKey('Rol', on_delete=models.SET_NULL, null=True, blank=True)  # No obligatorio
